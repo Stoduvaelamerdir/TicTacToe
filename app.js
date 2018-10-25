@@ -1,7 +1,15 @@
-const express = require('express');
+const express = require("express");
+const path = require("path");
 const app = express();
+const api = require("./src/server/api");
 
-const port = 3000;
+app.use(express.static(path.join(__dirname, "dist")));
+// For all queries to localhost:3000/api/...
+// use the API router (see below)
+app.use("/api", api);
+// For any other route (URL) just send an error
 
-app.get('/', (req, res) => res.send('Hello world!'));
-app.listen(port, () => console.log('hello world'));
+app.get("*", (req, res) => {
+  res.send({ error: "No route defined" });
+});
+module.exports = app;
