@@ -113,3 +113,15 @@ test("Adding a score should return false because the game is running", () => {
    expect(checkPlayer()).toBe('X');
    expect(checkWinner()).toBe(false);
 });
+test("Reseting the game, when the game is playing", () => {
+   expect(resetGame()).toBe(false);
+});
+test("Reseting the game, testing scores before and after", () => {
+   expect(finishGame()).toBe(true);
+   expect(checkScore('X')).toBe(4);
+   expect(checkScore('O')).toBe(4);
+   expect(resetGame()).toBe(true);
+   expect(checkScore('X')).toBe(0);
+   expect(checkScore('O')).toBe(0);
+});
+

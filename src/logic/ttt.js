@@ -114,3 +114,11 @@ restartGame = function(){
 	}
 	return false;
 }
+
+resetGame = function(){
+	if(!playing){
+		TTT();
+		return true;
+	}
+	return false;
+}
