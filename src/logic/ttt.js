@@ -72,8 +72,11 @@ checkTie = function(){
 }
 
 finishGame = function() {
-	playing = false;
-	return playing;
+	if(playing){
+		playing = false;
+		return true;
+	}
+	return false;
 }
 
 addScore = function(player) {
@@ -95,4 +98,15 @@ checkScore = function(player) {
 	if(player = 'X') {
 		return xPoints;
 	}
+}
+
+restartGame = function(){
+	if(!playing){
+		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+		player = 'X';
+		counter = 0;
+		playing = true;
+		return true;
+	}
+	return false;
 }

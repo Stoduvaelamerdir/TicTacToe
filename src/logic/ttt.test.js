@@ -86,8 +86,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 test("Adding a score should return false because the game is running", () => {
    expect(addScore('X')).toBe(false);
 });
-test("Calling finish game finishes the game and returns the current game state which is false", () => {
-   expect(finishGame()).toBe(false);
+test("Calling finish game finishes the game and returns true if completed", () => {
+   expect(finishGame()).toBe(true);
 });
 test("Adding a score should return true because we finished the game in our previous test. Checking the score for X should return 1, then after adding 3 more points the score for X should return 4", () => {
    expect(addScore('X')).toBe(true);
@@ -97,4 +97,10 @@ test("Adding a score should return true because we finished the game in our prev
    expect(addScore('X')).toBe(true);
    expect(checkScore('X')).toBe(4);
 
+});
+test("Adding a score should return false because the game is running", () => {
+   expect(checkWinner()).toBe('X');
+   expect(restartGame()).toBe(true);
+   expect(checkPlayer()).toBe('X');
+   expect(checkWinner()).toBe(false);
 });
