@@ -17,3 +17,11 @@ test("Returns true, then sets field 0 to X, then returns false cause field is ta
 	expect(checkField(0)).toBe(false);
 	expect(setField(0)).toBe(false);
 });
+test("", () => {
+	expect(TTT()).toBe(true);
+	expect(checkWinner()).toBe(false);
+	expect(setField(0)).toBe('X');
+	expect(setField(1)).toBe('X');
+	expect(setField(2)).toBe('X');
+	expect(checkWinner()).toBe('X');
+});
