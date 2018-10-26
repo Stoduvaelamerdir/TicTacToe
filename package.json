@@ -10,7 +10,6 @@
     "start": "node server",
     "server": "webpack-dev-server",
     "build": "webpack"
-
   },
   "repository": {
     "type": "git",
