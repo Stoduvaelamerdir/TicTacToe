@@ -95,9 +95,10 @@ addScore = function(player) {
 }
 
 checkScore = function(player) {
-	if(player = 'X') {
+	if(player == 'X') {
 		return xPoints;
 	}
+	return oPoints;
 }
 
 restartGame = function(){

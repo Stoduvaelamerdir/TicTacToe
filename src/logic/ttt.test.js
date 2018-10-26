@@ -98,6 +98,15 @@ test("Adding a score should return true because we finished the game in our prev
    expect(checkScore('X')).toBe(4);
 
 });
+test("Same as the previous test, but for O", () => {
+   expect(addScore('O')).toBe(true);
+   expect(checkScore('O')).toBe(1);
+   expect(addScore('O')).toBe(true);
+   expect(addScore('O')).toBe(true);
+   expect(addScore('O')).toBe(true);
+   expect(checkScore('O')).toBe(4);
+
+});
 test("Adding a score should return false because the game is running", () => {
    expect(checkWinner()).toBe('X');
    expect(restartGame()).toBe(true);
