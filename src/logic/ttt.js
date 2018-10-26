@@ -16,11 +16,26 @@ changeTurn = function() {
 		player = 'O';
 	} else {
 		player = 'X';
-	}
-	return player;
+	
+	}	return player;
 }
 
 checkPlayer = function() {
 	return player;
 }
 
+setField = function(field) {
+	if(checkField(field)){
+		grid[field] = checkPlayer();
+		return grid[field];
+	}
+	return false;
+	
+}
+checkField = function(field){
+	if(grid[field] == field){
+		return true;
+	} else {
+		return false;
+	}
+}
