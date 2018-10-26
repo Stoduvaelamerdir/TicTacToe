@@ -47,29 +47,52 @@ checkField = function(field){
 checkWinner = function(){
 	for(var i = 0; i < 3; i++){
 		if(grid[i] == grid[i+3] && grid[i] == grid[i+6]){
-			playing = false;
 			return player;
 		}	
 	}
 	for(var i = 0; i < 7; i = i+3){
 		if(grid[i] == grid[i+1] && grid[i] == grid[i+2]){
-			playing = false;
 			return player;
 		}	
 	}
 	if(grid[0] == grid[4] && grid[0] == grid[8]) {
-		playing = false;
         return player;
 
     } else if(grid[2] == grid[4] && grid[2] == grid[6]){
-    	playing = false;
         return player;
     }
     return false;
 }
+
 checkTie = function(){
 	if(counter > 8 && playing == true){
     	return true;
     } 
     return false;
+}
+
+finishGame = function() {
+	playing = false;
+	return playing;
+}
+
+addScore = function(player) {
+	if(!playing) {
+
+		if(player == 'X') {
+			xPoints++;
+			return true;
+		}
+		
+		oPoints++;
+		return true;
+
+	}
+	return false;
+}
+
+checkScore = function(player) {
+	if(player = 'X') {
+		return xPoints;
+	}
 }
