@@ -1,20 +1,25 @@
-var grid,
-	xPoints, 
-	oPoints,
-	player,
-	counter,
-	playing;
-
-TTT = function() {
-	grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+var grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 	xPoints = 0;
 	oPoints = 0;
 	player = 'X';
 	counter = 0;
 	playing = true;
-	return true;
-}
 
+TTT = function() {
+	xP = checkScore('X');
+	oP = checkScore('O');
+	ping = checkPlaying();
+	map = getGrid();
+	var game = {"xScore": xP, "oScore": oP, "playing": ping, "grid": map};
+
+	return game;
+}
+checkPlaying = function() {
+	return playing;
+}
+getGrid = function() {
+	return grid;
+}
 changeTurn = function() {
 	if (player == 'X') {
 		player = 'O';
@@ -117,7 +122,12 @@ restartGame = function(){
 
 resetGame = function(){
 	if(!playing){
-		TTT();
+		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+		xPoints = 0;
+		oPoints = 0;
+		player = 'X';
+		counter = 0;
+		playing = true;
 		return true;
 	}
 	return false;

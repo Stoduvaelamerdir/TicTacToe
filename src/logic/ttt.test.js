@@ -1,9 +1,11 @@
 const ttt = require("./ttt");
 
-test("Returns true if initiation successful", () => {
-   expect(TTT()).toBe(true);
+test("Returns state of parameters that will be printed on the screen", () => {
+   expect(TTT()).not.toBeNull();
 });
-
+test("Returns true if initiation successful", () => {
+   expect(checkPlaying()).toBe(true);
+});
 test("Returns O twice then X twice.", () => {
 	expect(changeTurn()).toBe('O');
 	expect(checkPlayer()).toBe('O');
@@ -19,7 +21,8 @@ test("Returns true, then sets field 0 to X, then returns false cause field is ta
 });
 
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	 expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(0)).toBe('X');
 	expect(setField(1)).toBe('X');
@@ -27,7 +30,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'O'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(changeTurn()).toBe('O');
 	expect(setField(3)).toBe('O');
@@ -36,7 +40,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('O');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(6)).toBe('X');
 	expect(setField(7)).toBe('X');
@@ -44,7 +49,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(0)).toBe('X');
 	expect(setField(3)).toBe('X');
@@ -52,7 +58,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(1)).toBe('X');
 	expect(setField(4)).toBe('X');
@@ -60,7 +67,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(2)).toBe('X');
 	expect(setField(5)).toBe('X');
@@ -68,7 +76,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(0)).toBe('X');
 	expect(setField(4)).toBe('X');
@@ -76,7 +85,8 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(checkWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
-	expect(TTT()).toBe(true);
+	expect(finishGame()).toBe(true);
+	expect(resetGame()).toBe(true);
 	expect(checkWinner()).toBe(false);
 	expect(setField(2)).toBe('X');
 	expect(setField(4)).toBe('X');
