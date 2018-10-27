@@ -1,9 +1,20 @@
-describe('Example puppeteer test', () => {
+const puppeteer = require("puppeteer");
+
+describe('Puppeteer screenshot test', () => {
+    let browser, page;
+    let url = "https://google.com"
+    
     beforeAll(async () => {
-        await page.goto('https://google.com');
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
     });
 
-    it('should display "google" text on page', async () => {
-        await expect(page).toMatch('google');
+    afterAll(() => {
+        browser.close();
+    });
+
+    test('Should take screenshot of google\'s landing page', async () => {
+        await page.goto(url);
+        await page.screenshot( {path: './src/tmp/sc.png', type: 'png'} );
     });
 });
