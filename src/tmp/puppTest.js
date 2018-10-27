@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-/*
+
 (async () => {
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer');
     await browser.close();
 })();
 
-*/
+/*
 const grabData = async () => {
 	const browser = await puppeteer.launch({
 		headless: true,
@@ -27,3 +27,4 @@ const grabData = async () => {
 };
 
 module.exports = grabData;
+*/

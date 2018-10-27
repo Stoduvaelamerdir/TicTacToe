@@ -1,4 +1,4 @@
-/*const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer");
 
 describe('Puppeteer screenshot test', () => {
     let browser, page;
@@ -17,14 +17,13 @@ describe('Puppeteer screenshot test', () => {
         await page.goto(url);
         await page.screenshot( {path: './src/tmp/sc.png', type: 'png'} );
     });
-});*/
+});
 
-
-const { expect } = require('chai');
+/*
 const grabData = require('puppTest.js');
 
 describe('tests Google', function testExample() {
-  this.timeout(30000);
+  //this.timeout(30000);
 
   it('browses the website', async function testBrowser() {
     const { title, outerHTML } = await grabData();
@@ -39,4 +38,4 @@ describe('tests Google', function testExample() {
   it('outerHTML has text: google', async function testOuterHTML() {
     expect(this.outerHTML.toLowerCase()).to.have.string('google');
   });
-});
+});*/

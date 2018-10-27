@@ -11,10 +11,9 @@
     "server": "webpack-dev-server",
     "build": "webpack"
   },
-  "jest" : {
+  "jest": {
     "preset": "jest-puppeteer"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Stoduvaelamerdir/TicTacToe.git"
