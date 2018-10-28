@@ -37,6 +37,7 @@ setField = function(field) {
 	if(checkField(field)){
 		grid[field] = checkPlayer();
 		counter++;
+		changeTurn();
 		return grid[field];
 	}
 	return false;
@@ -132,3 +133,4 @@ resetGame = function(){
 	}
 	return false;
 }
+module.export = TTT();
