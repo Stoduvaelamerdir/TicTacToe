@@ -10,7 +10,8 @@ TTT = function() {
 	oP = checkScore('O');
 	ping = checkPlaying();
 	map = getGrid();
-	var game = {"xScore": xP, "oScore": oP, "playing": ping, "grid": map};
+	players = checkPlayer();
+	var game = {"xScore": xP, "oScore": oP, "playing": ping, "grid": map, "player": players};
 
 	return game;
 }
@@ -57,24 +58,25 @@ checkField = function(field){
 checkWinner = function(){
 	for(var i = 0; i < 3; i++){
 		if(grid[i] == grid[i+3] && grid[i] == grid[i+6]){
+			addScore(player);
 			return player;
 		}	
 	}
 	for(var i = 0; i < 7; i = i+3){
 		if(grid[i] == grid[i+1] && grid[i] == grid[i+2]){
+			addScore(player);
 			return player;
 		}	
 	}
 	if(grid[0] == grid[4] && grid[0] == grid[8]) {
+		addScore(player);
         return player;
 
     } else if(grid[2] == grid[4] && grid[2] == grid[6]){
+    	addScore(player);
         return player;
 
-    } else if(grid[2] == grid[4] && grid[2] == grid[6]){
-        return player;
-	}
-	
+    }
     return false;
 }
 
@@ -94,7 +96,7 @@ finishGame = function() {
 }
 
 addScore = function(player) {
-	if(!playing) {
+	//if(!playing) {
 
 		if(player == 'X') {
 			xPoints++;
@@ -105,8 +107,8 @@ addScore = function(player) {
 		return true;
 
 	}
-	return false;
-}
+	//return false;
+//}
 
 checkScore = function(player) {
 	if(player == 'X') {
