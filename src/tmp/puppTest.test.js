@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
 
 describe('TicTacToe game tests', () => {
     let browser, page, field;
