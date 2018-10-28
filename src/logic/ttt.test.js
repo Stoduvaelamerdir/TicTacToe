@@ -28,7 +28,6 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	changePlayer();
 	expect(setField(2)).not.toBeNull();
 	changePlayer();
-	checkWinner();
 	expect(getWinner()).toBe("X");
 	expect(checkScore('X')).toBe(1);
 });
@@ -117,3 +116,5 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	checkWinner();
 	expect(getWinner()).toBe('X');
 });
+
+

@@ -7,11 +7,13 @@ var grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 	winner = false;
 
 TTT = function() {
+	xPoints = checkScore('X');
+	oPoints = checkScore('O');
 	ping = checkPlaying();
 	map = getGrid();
 	players = checkPlayer();
 	winner = getWinner();
-	var game = {"playing": ping, "grid": map, "player": players, "winner":winner };
+	var game = {"playing": ping, "grid": map, "player": players, "winner":winner, "oScore":oPoints, "xScore":xPoints };
 
 	return game;
 }
@@ -43,6 +45,7 @@ setField = function(field) {
 	if(checkField(field)){
 		grid[field] = checkPlayer();
 		counter++;
+		checkWinner();
 		changePlayer();
 		return TTT();
 	}
@@ -124,23 +127,20 @@ hardReset = function(){
 		counter = 0;
 		playing = true;
 		winner = false;
+		return TTT();
 }
 
 restartGame = function(){
-	if(!playing){
+	
 		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 		player = 'X';
 		counter = 0;
 		playing = true;
 		winner = false;
-	}
+		return TTT();
+
 }
 
-resetGame = function(){
-	if(!playing){
-		hardReset();
-	}
-}
 finishGame = function() {
 	if(playing){
 		playing = false;
