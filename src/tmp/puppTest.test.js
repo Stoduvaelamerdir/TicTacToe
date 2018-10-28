@@ -1,8 +1,8 @@
 const puppeteer = require("puppeteer");
 
 describe('TicTacToe game tests', () => {
-    var browser, page, field;
-    var pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
+    let browser, page, field;
+    let pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
 
     beforeAll(async () => {
         browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
@@ -14,7 +14,7 @@ describe('TicTacToe game tests', () => {
     });
 
     test('X in field 1', async () => {
-        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
+        await page.goto(pageURL, { 
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         await page.click('#f0');
@@ -30,7 +30,9 @@ describe('TicTacToe game tests', () => {
     });
 
     test('X in field 1, O in field 4', async () => {
-        await page.goto(pageURL);
+        await page.goto(pageURL, {
+             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
+        });
         await page.click('#f0');
         //await page.waitFor(1000);
     
@@ -47,7 +49,7 @@ describe('TicTacToe game tests', () => {
     });
 
     test('3x X in top row should make X the winner and end the game', async () => {
-        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
+        await page.goto(pageURL, { 
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         
