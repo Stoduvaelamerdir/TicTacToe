@@ -5,10 +5,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Tic Tac Toe</title>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Ubuntu" rel="stylesheet">
 	<style>
 		body {
-			background-color: #363636
+			align-content: center;
+			background-color: #A68F59
 		}
 
 		button {
@@ -17,6 +18,32 @@
 			font-size: 20px;
 			border-radius: 5px;
 			font-family: 'Ubuntu', sans-serif;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: inherit;
+		}
+
+		.page {
+			position: fixed;
+			top: 15px;
+
+			left: 10%;
+			right: 10%;
+
+			width: 80%;
+			height: 100%;
+			background: #363636;
+		}
+
+		.signature {
+			font-family: 'Josefin Sans', sans-serif;
+			color: #363636;
+			position: fixed;
+			top: -15px;
+			left: 0px;
+			font-size: 15px;
 		}
 
 		.title {
@@ -74,7 +101,7 @@
 		}
 
 		table {
-			margin-top: 70px;
+			margin-top: 80px;
 			border-collapse: collapse;
 			position: absolute;
 			margin-left: -155px;
@@ -102,43 +129,48 @@
 </head>
 
 <body>
-	<div class="game">
-		<table>
-			<tr>
-				<td class="cell" id="f0"></td>
-				<td class="cell" id="f1"></td>
-				<td class="cell" id="f2"></td>
-			</tr>
-			<tr>
-				<td class="cell" id="f3"></td>
-				<td class="cell" id="f4"></td>
-				<td class="cell" id="f5"></td>
-			</tr>
-			<tr>
-				<td class="cell" id="f6"></td>
-				<td class="cell" id="f7"></td>
-				<td class="cell" id="f8"></td>
-			</tr>
-		</table>
-	</div>
-	<div class="title">
-		<p>The Tic Tac Toe game!</p>
-	</div>
-	<div class="indicator">
-		<p id="turns">X Turn</p>
-	</div>
-	<div class="score">
-		<p id="xP">X points 0</p>
-		<p id="oP">O points 0</p>
-	</div>
-	<div class="endgame">
-		<div class="text">
-			<p id="promter">Draw</p>
+	<div class="page">
+		<div class="game">
+			<table>
+				<tr>
+					<td class="cell" id="f0"></td>
+					<td class="cell" id="f1"></td>
+					<td class="cell" id="f2"></td>
+				</tr>
+				<tr>
+					<td class="cell" id="f3"></td>
+					<td class="cell" id="f4"></td>
+					<td class="cell" id="f5"></td>
+				</tr>
+				<tr>
+					<td class="cell" id="f6"></td>
+					<td class="cell" id="f7"></td>
+					<td class="cell" id="f8"></td>
+				</tr>
+			</table>
 		</div>
-	</div>
-	<div class="buttonCont">
-		<button id="replay">Replay</button>
-		<button id="reset">Reset</button>
+		<div class="title">
+			<p>The Tic Tac Toe game!</p>
+		</div>
+		<div class="indicator">
+			<p>X Turn</p>
+		</div>
+		<div class="score">
+			<p>X = 0</p>
+			<p>O = 0</p>
+		</div>
+		<div class="endgame">
+			<div class="text">
+				<p>Draw</p>
+			</div>
+		</div>
+		<div class="buttonCont">
+			<button id="replay">Replay</button>
+			<button id="reset">Reset</button>
+		</div>
+		<div class="signature">
+			<p><a href="https://github.com/Stoduvaelamerdir/TicTacToe">Made By Stöðuvælamerðir</a></p>
+		</div>
 	</div>
 </body>
 
