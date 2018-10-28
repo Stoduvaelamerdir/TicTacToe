@@ -9,13 +9,14 @@ window.onload = function () {
 }
 
 $("#replay").click(function () {
-	console.log("replay")
+	$(".endgame").css("display", "none");
     fetch("/api/restartGame")
         .then(getGame())
         .catch(error => console.log('Error:', error));
 })
 
 $("#reset").click(function () {
+	$(".endgame").css("display", "none");
     fetch("/api/resetGame")
         .then(getGame())
         .catch(error => console.log('Error:', error));
@@ -52,7 +53,6 @@ function updateScore(x,o) {
    $("#xP").text("X points "+ x);
    $("#oP").text("O points "+ o);
 }
-
 function addMove(number) {
     var square = number;
     fetch("/api/addTurn/" + square)
@@ -87,14 +87,17 @@ function checkTie(){
 
 function promptWinner(res) {
     if(res.winner == 'X' ||res.winner == 'O'){
-        console.log(res.winner);
+    	$(".endgame").css("display", "block");
+        $("#promter").text(res.winner + " WON!!!");
+
         endCurrentGame()
         
     }
 }
 function promptTie(res) {
    	if(res.tie == true) {
-        console.log("tie")
+   		$(".endgame").css("display", "block");
+        $("#promter").text("TIE!!!");
         endCurrentGame()
     }
 }
