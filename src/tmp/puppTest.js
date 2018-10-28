@@ -1,30 +1,34 @@
 const puppeteer = require('puppeteer');
 
-(async () => {
-    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-    const page = await browser.newPage();
-    await page.goto('https://example.com');
-    await page.screenshot({path: 'example.png'});
+const page;
 
+(async () => {
+	const browser = await puppeteer.launch({ headless: true })
+	const page = await.browser.launch()
+
+    //const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    //const page = await browser.newPage();
+
+    tictactoe(page);
     await browser.close();
 })();
 
-/*
-const grabData = async () => {
-	const browser = await puppeteer.launch({
-		headless: true,
-		args: ['--no-sandbox', '--disable-setuid-sandbox']
-	});
+async function tictactoe(){
+	
+	let pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
 
-	const page = await browser.newPage();
-	await page.goto('https://google.com');
+	await page.goto(pageURL);
 
-	const title = await page.title();
-  	const outerHTML = await page.evaluate(() => document.querySelector('body').outerHTML);
-  	// cleanup once done
-  	await browser.close();
-  	return { title, outerHTML };
-};
+	await page.click('#f0'); // x - 0
+	await page.click('#f3'); // o - 3
+	await page.click('#f2'); // x - 2
+	await page.click('#f4'); // o - 4
+	await page.click('#f1'); // x - 1
+	
+	// x x x
+	// o o -
+	// - - -
 
-module.exports = grabData;
-*/
+	console.log("3x in a row, this puppet wins!");
+
+}
