@@ -7,12 +7,10 @@
     "test": "jest",
     "watch": "jest --watchAll",
     "clean": "rm -rf node_modules",
+    "heroku-postbuild": "webpack -p",
     "start": "node server",
     "server": "webpack-dev-server",
-    "build": "webpack"
-  },
-  "jest": {
-    "preset": "jest-puppeteer"
+    "build": "npm test && webpack && node server"
   },
   "repository": {
     "type": "git",
@@ -36,8 +34,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "jest-puppeteer": "^3.4.0",
-    "lodash": "^4.17.11",
-    "puppeteer": "^1.9.0"
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11"
   }
 }
