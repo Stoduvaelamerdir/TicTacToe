@@ -31,9 +31,11 @@ for (var i = 0; i < tdArray.length; i++) {
   })(i);
 }
 function updateGame(res) {
-  updateTable(res.grid);
-  updatePlayer(res.player);
-  updateScore(res.xScore, res.oScore);
+  updateTable(res.grid)
+  .then(
+  updatePlayer(res.player))
+  .then(
+  updateScore(res.xScore, res.oScore))
 }
 
 function updateTable(grid) {
@@ -59,7 +61,6 @@ function addMove(number) {
   fetch("/api/addTurn/" + square)
     .then(checkTie())
     .then(checkWinner())
-    .then(changePlayer())
     .then(getGame())
     .catch(error => console.log("Error:", error));
 }
