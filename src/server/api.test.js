@@ -1,12 +1,6 @@
 const request = require("supertest");
 const app = require("../../app");
 
-test("it should return a 405 code and an error message", async() => {
-    const res = await request(app).get("/api");
-    expect(res.status).toBe(405);
-    expect(res.body).toHaveProperty("error");
-});
-
 test("should return clean board", async() => {
     const res = await request(app).get("/api/resetGame");
     expect(res.status).toBe(200);
