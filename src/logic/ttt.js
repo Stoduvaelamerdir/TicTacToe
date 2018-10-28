@@ -7,12 +7,11 @@ var grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 	winner = false;
 
 TTT = function() {
-	xP = checkScore('X');
-	oP = checkScore('O');
 	ping = checkPlaying();
 	map = getGrid();
 	players = checkPlayer();
-	var game = {"xScore": xP, "oScore": oP, "playing": ping, "grid": map, "player": players};
+	winner = getWinner();
+	var game = {"playing": ping, "grid": map, "player": players, "winner":winner };
 
 	return game;
 }
@@ -21,5 +20,16 @@ checkPlaying = function() {
 	return playing;
 }
 
+getGrid = function() {
+	return grid;
+}
+getWinner = function(){
+	return winner;
+}
+
+
+checkPlayer = function() {
+	return player;
+}
 
 module.export = TTT();
