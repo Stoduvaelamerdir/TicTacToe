@@ -12,6 +12,9 @@
     "server": "webpack-dev-server",
     "build": "npm test && webpack && node server"
   },
+  "jest": {
+    "preset": "jest-puppeteer"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Stoduvaelamerdir/TicTacToe.git"
@@ -34,7 +37,9 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "jquery": "^3.3.1",
-    "lodash": "^4.17.11"
+    "jest-puppeteer": "^3.4.0",
+    "lodash": "^4.17.11",
+    "puppeteer": "^1.9.0", 
+    "jquery": "^3.3.1"
   }
 }
