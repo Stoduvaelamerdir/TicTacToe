@@ -4,7 +4,7 @@ var won = false;
 var tdArray = document.getElementsByTagName("td");
 
 window.onload = function() {
-  fetch("/api/clearBoard").catch(error => console.log("Error:", error));
+  fetch("/api/resetGame").catch(error => console.log("Error:", error));
 };
 
 $("#replay").click(function() {
@@ -31,14 +31,14 @@ for (var i = 0; i < tdArray.length; i++) {
       makeMove(index);
     });
   })(i);
-}
+};
+
 function afterReset(res) {
   updateTable(res.grid)
   updatePlayer(res.player)
-  updateScore(res.xScore, res.oScore)
-  
-  
-}
+  updateScore(res.xScore, res.oScore)  
+};
+
 function afterMove(res) {
   updateTable(res.grid)
   if(res.winner == false){
@@ -46,10 +46,9 @@ function afterMove(res) {
   	updateScore(res.xScore, res.oScore)
   }else{
   	checkWin(res.winner);
-  }
+  }  
+};
 
-  
-}
 function checkWin(winner) {
 	if(winner === "Tie"){
 		$(".endgame").css("display", "block");
@@ -58,7 +57,8 @@ function checkWin(winner) {
 		$(".endgame").css("display", "block");
     	$("#promter").text(winner + " WON!!!");
 	}
-}
+};
+
 function updateTable(grid) {
   for (var i = 0; i < grid.length; i++) {
     var square = document.getElementById("f" + i);
@@ -70,15 +70,16 @@ function updateTable(grid) {
     }
   }
 }
+
 function updatePlayer(player) {
   $("#turns").text(player + " Turn");
 }
+
 function updateScore(x, o) {
   console.log(x + o);
   $("#xP").text("X points " + x);
   $("#oP").text("O points " + o);
 }
-
 
 function makeMove(number) {
   field = number;
@@ -87,5 +88,3 @@ function makeMove(number) {
     .then(res => afterMove(res))
     .catch(error => console.log("Error:", error));
 }
-
-
