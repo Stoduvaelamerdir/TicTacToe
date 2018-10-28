@@ -47,7 +47,7 @@ setField = function(field) {
 }
 
 checkField = function(field){
-	if(grid[field] == field){
+	if(grid[field] == field && checkPlaying()){
 		return true;
 	} else {
 		return false;
