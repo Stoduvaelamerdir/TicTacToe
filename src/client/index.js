@@ -9,15 +9,16 @@ window.onload = function () {
 }
 
 $("#replay").click(function () {
-	console.log("replay")
+	$(".endgame").css("display", "none");
     fetch("/api/restartGame")
-        .then(getBoard())
+        .then(getGame())
         .catch(error => console.log('Error:', error));
 })
 
 $("#reset").click(function () {
+	$(".endgame").css("display", "none");
     fetch("/api/resetGame")
-        .then(getBoard())
+        .then(getGame())
         .catch(error => console.log('Error:', error));
 })
 
@@ -28,10 +29,10 @@ for (var i = 0; i < tdArray.length; i++) {
         })
     })(i);
 }
-
-function updateGame(tictactoe) {
-    var game = tictactoe.map;
-    updateTable(game);
+function updateGame(res){
+	updateTable(res.grid);
+	updatePlayer(res.player);
+	updateScore(res.xScore , res.oScore);
 }
 
 function updateTable(grid) {
@@ -44,22 +45,29 @@ function updateTable(grid) {
         }
     }
 }
-
+function updatePlayer(player) {
+    $("#turns").text(player + " Turn")
+}
+function updateScore(x,o) {
+	console.log(x + o)
+   $("#xP").text("X points "+ x);
+   $("#oP").text("O points "+ o);
+}
 function addMove(number) {
     var square = number;
     fetch("/api/addTurn/" + square)
-        .then(getBoard())
         .then(checkWinner())
         .then(checkTie())
         .then(changePlayer())
+        .then(getGame())
         .catch(error => console.log('Error:', error));
 
 };
 
-function getBoard() {
-    fetch("/api/getBoard")
+function getGame() {
+    fetch("/api/getGame")
         .then(res => res.json())
-        .then(res => updateTable(res.grid))
+        .then(res => updateGame(res))
         .catch(error => console.log('Error:', error))
 }
 
@@ -79,14 +87,17 @@ function checkTie(){
 
 function promptWinner(res) {
     if(res.winner == 'X' ||res.winner == 'O'){
-        console.log(res.winner);
+    	$(".endgame").css("display", "block");
+        $("#promter").text(res.winner + " WON!!!");
+
         endCurrentGame()
         
     }
 }
 function promptTie(res) {
    	if(res.tie == true) {
-        console.log("tie")
+   		$(".endgame").css("display", "block");
+        $("#promter").text("TIE!!!");
         endCurrentGame()
     }
 }

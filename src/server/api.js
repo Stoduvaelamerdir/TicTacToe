@@ -24,7 +24,7 @@ router.get("/checkTie", (req, res) => {
   res.status(200).send({tie : checkTie()});
 });
 
-router.get("/getBoard", (req, res) => {
+router.get("/getGame", (req, res) => {
   var req = req;
   var res = res;
   res.status(200).send(TTT());
