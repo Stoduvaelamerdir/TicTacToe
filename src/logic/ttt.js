@@ -31,5 +31,29 @@ getWinner = function(){
 checkPlayer = function() {
 	return player;
 }
+checkField = function(field){
+	if(grid[field] == field && checkPlaying()){
+		return true;
+	} else {
+		return false;
+	}
+}
 
+setField = function(field) {
+	if(checkField(field)){
+		grid[field] = checkPlayer();
+		counter++;
+		return TTT();
+	}
+	return false;
+	
+}
+
+checkField = function(field){
+	if(grid[field] == field && checkPlaying()){
+		return true;
+	} else {
+		return false;
+	}
+}
 module.export = TTT();
