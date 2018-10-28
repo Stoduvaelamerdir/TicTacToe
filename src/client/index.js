@@ -9,7 +9,8 @@ window.onload = function () {
 }
 
 $("#replay").click(function () {
-    fetch("/api/replayGame")
+	console.log("replay")
+    fetch("/api/restartGame")
         .then(getBoard())
         .catch(error => console.log('Error:', error));
 })
@@ -38,6 +39,8 @@ function updateTable(grid) {
         var square = document.getElementById('f' + i);
         if (i != grid[i]) {
             square.innerHTML = grid[i];
+        } else {
+        	square.innerHTML = "";
         }
     }
 }
@@ -47,6 +50,7 @@ function addMove(number) {
     fetch("/api/addTurn/" + square)
         .then(getBoard())
         .then(checkGameOver())
+        .then(changePlayer())
         .catch(error => console.log('Error:', error));
 
 };
@@ -72,8 +76,18 @@ function checkGameOver() {
 function promptGameOver(res) {
     if(res == true){
         console.log("tie")   
+        endCurrentGame()
     }
     else if(res.winner != false) {
         console.log(res)
+        endCurrentGame()
     }
+}
+function changePlayer() {
+	fetch("/api/changePlayer")
+        .catch(error => console.log('Error:', error));
+}
+function endCurrentGame() {
+	fetch("/api/endCurr")
+        .catch(error => console.log('Error:', error));
 }

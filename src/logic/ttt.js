@@ -129,6 +129,7 @@ restartGame = function(){
 resetGame = function(){
 	if(!playing){
 		hardReset();
+		return true;
 	}
 	return false;
 }

@@ -39,6 +39,7 @@ router.get("/clearBoard", (req, res) => {
 router.get("/resetGame", (req, res) => {
   var req = req;
   var res = res;
+ 
   res.status(200).send(resetGame())
 })
 
@@ -46,6 +47,16 @@ router.get("/restartGame", (req, res) => {
   var req = req;
   var res = res;
   res.status(200).send(restartGame())
+})
+router.get("/changePlayer", (req, res) => {
+  var req = req;
+  var res = res;
+  res.status(200).send(changeTurn())
+})
+router.get("/endCurr", (req, res) => {
+  var req = req;
+  var res = res;
+  res.status(200).send(finishGame())
 })
 
 
