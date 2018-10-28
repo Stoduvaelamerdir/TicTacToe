@@ -5,7 +5,7 @@ describe('TicTacToe game tests', () => {
     var pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
 
     beforeAll(async () => {
-        browser = await puppeteer.launch( { headless: false });
+        browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         page = await browser.newPage();
     });
 
@@ -30,9 +30,7 @@ describe('TicTacToe game tests', () => {
     });
 
     test('X in field 1, O in field 4', async () => {
-        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
-            waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
-        });
+        await page.goto(pageURL);
         await page.click('#f0');
         //await page.waitFor(1000);
     
