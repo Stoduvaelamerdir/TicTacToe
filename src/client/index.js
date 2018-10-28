@@ -49,7 +49,8 @@ function addMove(number) {
     var square = number;
     fetch("/api/addTurn/" + square)
         .then(getBoard())
-        .then(checkGameOver())
+        .then(checkWinner())
+        .then(checkTie())
         .then(changePlayer())
         .catch(error => console.log('Error:', error));
 
@@ -62,24 +63,30 @@ function getBoard() {
         .catch(error => console.log('Error:', error))
 }
 
-function checkGameOver() {
+function checkWinner() {
     fetch("/api/checkWinner")
         .then(res => res.json())
-        .then(res => promptGameOver(res))
+        .then(res => promptWinner(res))
         .catch(error => console.log('Error:', error))
+}
+function checkTie(){
     fetch("/api/checkTie")
         .then(res => res.json())
-        .then(res => promptGameOver(res))
+        .then(res => promptTie(res))
         .catch(error => console.log('Error:', error))
 }
 
-function promptGameOver(res) {
-    if(res == true){
-        console.log("tie")   
+
+function promptWinner(res) {
+    if(res.winner == 'X' ||res.winner == 'O'){
+        console.log(res.winner);
         endCurrentGame()
+        
     }
-    else if(res.winner != false) {
-        console.log(res)
+}
+function promptTie(res) {
+   	if(res.tie == true) {
+        console.log("tie")
         endCurrentGame()
     }
 }

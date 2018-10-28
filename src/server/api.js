@@ -21,7 +21,7 @@ router.get("/checkWinner", (req, res) => {
 router.get("/checkTie", (req, res) => {
   var req = req;
   var res = res;
-  res.status(200).send(checkTie());
+  res.status(200).send({tie : checkTie()});
 });
 
 router.get("/getBoard", (req, res) => {
