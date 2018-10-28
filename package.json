@@ -9,7 +9,7 @@
     "clean": "rm -rf node_modules",
     "start": "node server",
     "server": "webpack-dev-server",
-    "build": "webpack"
+    "build": "npm test && webpack && node server"
   },
   "repository": {
     "type": "git",
