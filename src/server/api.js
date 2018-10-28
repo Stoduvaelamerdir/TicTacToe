@@ -33,30 +33,29 @@ router.get("/getGame", (req, res) => {
 router.get("/clearBoard", (req, res) => {
   var req = req;
   var res = res;
-  res.status(200).send(hardReset())
+  res.status(200).send(hardReset());
 })
 
 router.get("/resetGame", (req, res) => {
   var req = req;
   var res = res;
- 
-  res.status(200).send(resetGame())
+  res.status(200).send(resetGame());
 })
 
 router.get("/restartGame", (req, res) => {
   var req = req;
   var res = res;
-  res.status(200).send(restartGame())
+  res.status(200).send(restartGame());
 })
 router.get("/changePlayer", (req, res) => {
   var req = req;
   var res = res;
-  res.status(200).send(changeTurn())
+  res.status(200).send(changeTurn());
 })
 router.get("/endCurr", (req, res) => {
   var req = req;
   var res = res;
-  res.status(200).send(finishGame())
+  res.status(200).send(finishGame());
 })
 router.get("/checkField/:square", (req, res) => {
   var req = req;
