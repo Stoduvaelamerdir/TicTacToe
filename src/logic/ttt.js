@@ -4,14 +4,16 @@ var grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 	player = 'X';
 	counter = 0;
 	playing = true;
+	winner = false;
 
 TTT = function() {
-	xP = checkScore('X');
-	oP = checkScore('O');
+	xPoints = checkScore('X');
+	oPoints = checkScore('O');
 	ping = checkPlaying();
 	map = getGrid();
 	players = checkPlayer();
-	var game = {"xScore": xP, "oScore": oP, "playing": ping, "grid": map, "player": players};
+	winner = getWinner();
+	var game = {"playing": ping, "grid": map, "player": players, "winner":winner, "oScore":oPoints, "xScore":xPoints };
 
 	return game;
 }
@@ -23,31 +25,14 @@ checkPlaying = function() {
 getGrid = function() {
 	return grid;
 }
-
-changeTurn = function() {
-	if (player == 'X') {
-		player = 'O';
-	} else {
-		player = 'X';
-	
-	}	return player;
+getWinner = function(){
+	return winner;
 }
+
 
 checkPlayer = function() {
 	return player;
 }
-
-setField = function(field) {
-	if(checkField(field)){
-		grid[field] = checkPlayer();
-		counter++;
-		changeTurn();
-		return grid[field];
-	}
-	return false;
-	
-}
-
 checkField = function(field){
 	if(grid[field] == field && checkPlaying()){
 		return true;
@@ -56,86 +41,83 @@ checkField = function(field){
 	}
 }
 
+setField = function(field) {
+	if(checkField(field)){
+		grid[field] = checkPlayer();
+		counter++;
+		checkWinner();
+		changePlayer();
+		return TTT();
+	}
+	return false;
+	
+}
+checkScore = function(player){
+	if(player == 'X'){
+		return xPoints;
+	}
+	return oPoints;
+}
+checkField = function(field){
+	if(grid[field] == field && checkPlaying()){
+		return true;
+	} else {
+		return false;
+	}
+}
+changePlayer = function() {
+	if(player == "X")
+	{
+		player = "O";
+	}
+	else{
+		player = "X";
+	}
+}
 checkWinner = function(){
 	for(var i = 0; i < 3; i++){
 		if(grid[i] == grid[i+3] && grid[i] == grid[i+6]){
 			addScore(player);
-			return player;
+			winner = player;
+			finishGame();
 		}	
 	}
 	for(var i = 0; i < 7; i = i+3){
 		if(grid[i] == grid[i+1] && grid[i] == grid[i+2]){
 			addScore(player);
-			return player;
+			winner = player;
+			finishGame();
 		}	
 	}
 	if(grid[0] == grid[4] && grid[0] == grid[8]) {
 		addScore(player);
-        return player;
+        winner = player;
+        finishGame();
 
     } else if(grid[2] == grid[4] && grid[2] == grid[6]){
     	addScore(player);
-        return player;
+        winner = player;
+        finishGame();
 
     }
-    return false;
-}
-
-checkTie = function(){
-	if(counter > 8 && playing == true){
-    	return true;
+    else if(counter > 8 && playing == true){
+    	winner = "Tie"
+    	finishGame();
     } 
-    return false;
 }
 
-finishGame = function() {
-	if(playing){
-		playing = false;
-		return true;
-	}
-	return false;
-}
 
 addScore = function(player) {
-	//if(!playing) {
 
 		if(player == 'X') {
 			xPoints++;
-			return true;
 		}
-		
-		oPoints++;
-		return true;
-
-	}
-	//return false;
-//}
-
-checkScore = function(player) {
-	if(player == 'X') {
-		return xPoints;
-	}
-	return oPoints;
+		else{
+			oPoints++;
+		}
+	
 }
 
-restartGame = function(){
-	if(!playing){
-		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
-		player = 'X';
-		counter = 0;
-		playing = true;
-		return true;
-	}
-	return false;
-}
-
-resetGame = function(){
-	if(!playing){
-		hardReset();
-		return true;
-	}
-	return false;
-}
 
 hardReset = function(){	
 		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
@@ -144,7 +126,25 @@ hardReset = function(){
 		player = 'X';
 		counter = 0;
 		playing = true;
-		return true;
+		winner = false;
+		return TTT();
+}
+
+restartGame = function(){
+	
+		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+		player = 'X';
+		counter = 0;
+		playing = true;
+		winner = false;
+		return TTT();
 
 }
+
+finishGame = function() {
+	if(playing){
+		playing = false;
+	}
+}
+
 module.export = TTT();

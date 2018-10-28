@@ -11,7 +11,8 @@ $("#replay").click(function() {
   $(".endgame").css("display", "none");
   won = false;
   fetch("/api/restartGame")
-    .then(getGame())
+    .then(res => res.json())
+    .then(res => afterReset(res))
     .catch(error => console.log("Error:", error));
 });
 
@@ -19,25 +20,45 @@ $("#reset").click(function() {
   $(".endgame").css("display", "none");
   won = false;
   fetch("/api/resetGame")
-    .then(getGame())
+    .then(res => res.json())
+    .then(res => afterReset(res))
     .catch(error => console.log("Error:", error));
 });
 
 for (var i = 0; i < tdArray.length; i++) {
   (function(index) {
     tdArray[index].addEventListener("click", function() {
-      checkMove(index);
+      makeMove(index);
     });
   })(i);
 }
-function updateGame(res) {
+function afterReset(res) {
   updateTable(res.grid)
-  .then(
-  updatePlayer(res.player))
-  .then(
-  updateScore(res.xScore, res.oScore))
+  updatePlayer(res.player)
+  updateScore(res.xScore, res.oScore)
+  
+  
 }
+function afterMove(res) {
+  updateTable(res.grid)
+  if(res.winner == false){
+  	updatePlayer(res.player)
+  	updateScore(res.xScore, res.oScore)
+  }else{
+  	checkWin(res.winner);
+  }
 
+  
+}
+function checkWin(winner) {
+	if(winner === "Tie"){
+		$(".endgame").css("display", "block");
+  	    $("#promter").text("TIE!!!");
+	} else{
+		$(".endgame").css("display", "block");
+    	$("#promter").text(winner + " WON!!!");
+	}
+}
 function updateTable(grid) {
   for (var i = 0; i < grid.length; i++) {
     var square = document.getElementById("f" + i);
@@ -45,6 +66,7 @@ function updateTable(grid) {
       square.innerHTML = grid[i];
     } else {
       square.innerHTML = "";
+
     }
   }
 }
@@ -56,64 +78,14 @@ function updateScore(x, o) {
   $("#xP").text("X points " + x);
   $("#oP").text("O points " + o);
 }
-function addMove(number) {
-  var square = number;
-  fetch("/api/addTurn/" + square)
-    .then(checkTie())
-    .then(checkWinner())
-    .then(getGame())
+
+
+function makeMove(number) {
+  field = number;
+  fetch("/api/move/"+ field)
+    .then(res => res.json())
+    .then(res => afterMove(res))
     .catch(error => console.log("Error:", error));
 }
 
-function getGame() {
-  fetch("/api/getGame")
-    .then(res => res.json())
-    .then(res => updateGame(res))
-    .catch(error => console.log("Error:", error));
-}
 
-function checkWinner() {
-  fetch("/api/checkWinner")
-    .then(res => res.json())
-    .then(res => promptWinner(res))
-    .catch(error => console.log("Error:", error));
-}
-function checkTie() {
-  fetch("/api/checkTie")
-    .then(res => res.json())
-    .then(res => promptTie(res))
-    .catch(error => console.log("Error:", error));
-}
-
-function promptWinner(res) {
-  if (res.winner == "X" || res.winner == "O") {
-    $(".endgame").css("display", "block");
-    $("#promter").text(res.winner + " WON!!!");
-    won = true;
-    endCurrentGame();
-  }
-}
-function promptTie(res) {
-  if (res.tie == true && !won) {
-    $(".endgame").css("display", "block");
-    $("#promter").text("TIE!!!");
-    endCurrentGame();
-  }
-}
-function changePlayer() {
-  fetch("/api/changePlayer").catch(error => console.log("Error:", error));
-}
-function endCurrentGame() {
-  fetch("/api/endCurr").catch(error => console.log("Error:", error));
-}
-function checkMove(field) {
-  fetch("/api/checkField/" + field)
-    .then(res => res.json())
-    .then(res => {
-      if(res) {
-        addMove(field);
-      }
-    })
-    .then()
-    .catch(error => console.log("Error:", error));
-}
