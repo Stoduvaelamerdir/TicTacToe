@@ -14,12 +14,12 @@ describe('TicTacToe game tests', () => {
     });
 
     test('X in field 1', async () => {
-        await page.goto(pageURL, { 
+        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         await page.click('#f0');
-        await page.waitFor('#f0');
-        await page.waitFor(1000);
+        //await page.waitFor('#f0');
+        //await page.waitFor(1000);
 
         field = await page.evaluate(() => document.querySelector('.title > p').innerHTML);
         expect(field).toBe('The Tic Tac Toe game!');
@@ -30,11 +30,11 @@ describe('TicTacToe game tests', () => {
     });
 
     test('X in field 1, O in field 4', async () => {
-        await page.goto(pageURL, { 
+        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         await page.click('#f0');
-        await page.waitFor(1000);
+        //await page.waitFor(1000);
     
         field = await page.evaluate(() => document.querySelector('#f0').innerHTML);
 
@@ -49,17 +49,17 @@ describe('TicTacToe game tests', () => {
     });
 
     test('3x X in top row should make X the winner and end the game', async () => {
-        await page.goto(pageURL, { 
+        await page.goto('https://glacial-inlet-92555.herokuapp.com/', { 
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         
         await page.click('#f0'); // x
         await page.click('#f4'); // o
-        await page.waitFor(1000);
+        //await page.waitFor(1000);
         await page.click('#f1'); // x
         await page.click('#f3'); // o
         await page.click('#f2'); // x
-        await page.waitFor(1000);
+        //await page.waitFor(1000);
 
         //await page.screenshot( {path: './src/tmp/sc3.png', type: 'png'} ); // FOR TESTING
     
