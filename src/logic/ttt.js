@@ -37,7 +37,7 @@ checkPlayer = function() {
 }
 
 setField = function(field) {
-	if(checkField(field)){
+	if(checkField(field) && playing){
 		grid[field] = checkPlayer();
 		counter++;
 		return grid[field];
