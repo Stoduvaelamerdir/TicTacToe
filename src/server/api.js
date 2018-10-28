@@ -58,6 +58,11 @@ router.get("/endCurr", (req, res) => {
   var res = res;
   res.status(200).send(finishGame())
 })
+router.get("/checkField/:square", (req, res) => {
+  var req = req;
+  var res = res;
+  res.status(200).send(checkField(req.params.square))
+})
 
 
 module.exports = router;

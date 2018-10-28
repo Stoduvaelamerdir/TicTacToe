@@ -24,7 +24,7 @@ $("#reset").click(function () {
 for (var i = 0; i < tdArray.length; i++) {
     (function (index) {
         tdArray[index].addEventListener("click", function () {
-            addMove(index);
+            checkMove(index);
         })
     })(i);
 }
@@ -90,4 +90,12 @@ function changePlayer() {
 function endCurrentGame() {
 	fetch("/api/endCurr")
         .catch(error => console.log('Error:', error));
+}
+function checkMove(field) {
+	fetch("/api/checkField/" + field)
+        .then(res => res.json())
+        .then(res =>{ if(res){addMove(field)}})
+        .then()
+        .catch(error => console.log('Error:', error))
+    
 }
