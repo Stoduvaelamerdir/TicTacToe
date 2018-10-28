@@ -1,6 +1,6 @@
 //const _ = require("lodash");
 const $ = require("jquery");
-
+var won = false;
 var tdArray = document.getElementsByTagName("td");
 
 window.onload = function() {
@@ -9,6 +9,7 @@ window.onload = function() {
 
 $("#replay").click(function() {
   $(".endgame").css("display", "none");
+  won = false;
   fetch("/api/restartGame")
     .then(getGame())
     .catch(error => console.log("Error:", error));
@@ -16,6 +17,7 @@ $("#replay").click(function() {
 
 $("#reset").click(function() {
   $(".endgame").css("display", "none");
+  won = false;
   fetch("/api/resetGame")
     .then(getGame())
     .catch(error => console.log("Error:", error));
@@ -86,12 +88,12 @@ function promptWinner(res) {
   if (res.winner == "X" || res.winner == "O") {
     $(".endgame").css("display", "block");
     $("#promter").text(res.winner + " WON!!!");
-
+    won = true;
     endCurrentGame();
   }
 }
 function promptTie(res) {
-  if (res.tie == true) {
+  if (res.tie == true && !won) {
     $(".endgame").css("display", "block");
     $("#promter").text("TIE!!!");
     endCurrentGame();
@@ -107,7 +109,7 @@ function checkMove(field) {
   fetch("/api/checkField/" + field)
     .then(res => res.json())
     .then(res => {
-      if (res) {
+      if(res) {
         addMove(field);
       }
     })
