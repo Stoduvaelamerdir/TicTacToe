@@ -1,8 +1,8 @@
 const puppeteer = require("puppeteer");
 
 describe('TicTacToe game tests', () => {
-    let browser, page, field;
-    let pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
+    var browser, page, field;
+    var pageURL = 'https://glacial-inlet-92555.herokuapp.com/';
 
     beforeAll(async () => {
         browser = await puppeteer.launch( { headless: false });
