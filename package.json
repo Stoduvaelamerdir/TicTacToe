@@ -7,9 +7,10 @@
     "test": "jest",
     "watch": "jest --watchAll",
     "clean": "rm -rf node_modules",
+    "heroku-postbuild": "webpack -p",
     "start": "node server",
     "server": "webpack-dev-server",
-    "build": "webpack"
+    "build": "npm test && webpack && node server"
   },
   "jest": {
     "preset": "jest-puppeteer"
@@ -39,5 +40,7 @@
     "jest-puppeteer": "^3.4.0",
     "lodash": "^4.17.11",
     "puppeteer": "^1.9.0"
+    "jquery": "^3.3.1",
+
   }
 }
