@@ -14,12 +14,15 @@ TTT = function() {
 
 	return game;
 }
+
 checkPlaying = function() {
 	return playing;
 }
+
 getGrid = function() {
 	return grid;
 }
+
 changeTurn = function() {
 	if (player == 'X') {
 		player = 'O';
@@ -37,12 +40,12 @@ setField = function(field) {
 	if(checkField(field)){
 		grid[field] = checkPlayer();
 		counter++;
-		changeTurn();
 		return grid[field];
 	}
 	return false;
 	
 }
+
 checkField = function(field){
 	if(grid[field] == field){
 		return true;
@@ -50,6 +53,7 @@ checkField = function(field){
 		return false;
 	}
 }
+
 checkWinner = function(){
 	for(var i = 0; i < 3; i++){
 		if(grid[i] == grid[i+3] && grid[i] == grid[i+6]){
@@ -69,7 +73,8 @@ checkWinner = function(){
 
     } else if(grid[2] == grid[4] && grid[2] == grid[6]){
         return player;
-    }
+	}
+	
     return false;
 }
 
@@ -123,6 +128,12 @@ restartGame = function(){
 
 resetGame = function(){
 	if(!playing){
+		hardReset();
+	}
+	return false;
+}
+
+hardReset = function(){	
 		grid = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 		xPoints = 0;
 		oPoints = 0;
@@ -130,7 +141,6 @@ resetGame = function(){
 		counter = 0;
 		playing = true;
 		return true;
-	}
-	return false;
+
 }
 module.export = TTT();
