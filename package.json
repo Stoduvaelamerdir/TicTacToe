@@ -4,7 +4,7 @@
   "description": "Late-term Assignment - SC-T-303-HUGB, fall semester 2018",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --coverageDirectory=dist/coverage/jest",
+    "test": "jest",
     "watch": "jest --watchAll",
     "clean": "rm -rf node_modules",
     "heroku-postbuild": "webpack -p",
@@ -12,8 +12,11 @@
     "server": "webpack-dev-server",
     "build": "npm test && webpack && node server"
   },
+
   "jest": {
-    "preset": "jest-puppeteer"
+    "preset": "jest-puppeteer",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",
