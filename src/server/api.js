@@ -22,5 +22,4 @@ router.get("/restartGame", (req, res) => {
   res.status(200).send(restartGame())
 })
 
-
 module.exports = router;
