@@ -4,7 +4,7 @@ const page;
 
 (async () => {
 	const browser = await puppeteer.launch({ headless: true })
-	const page = await.browser.launch()
+	const page = await browser.launch()
 
     //const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     //const page = await browser.newPage();
