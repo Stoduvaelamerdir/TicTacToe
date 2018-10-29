@@ -38,7 +38,7 @@ jobs:
 
       - run:
             name: Install JUnit coverage reporter
-            command: npm i -D jest-junit
+            command: npm i -D jest jest-junit
       - run:
             name: Run test with JUnit as reporter
             command: jest --ci --reporters=default --reporters=jest-junit
