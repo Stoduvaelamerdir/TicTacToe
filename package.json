@@ -4,7 +4,7 @@
   "description": "Late-term Assignment - SC-T-303-HUGB, fall semester 2018",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --ci --testResultsProcessor=\"jest-junit\"",
     "watch": "jest --watchAll",
     "clean": "rm -rf node_modules",
     "heroku-postbuild": "webpack -p",
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
+    "jest-junit": "^5.2.0",
     "jest-puppeteer": "^3.4.0",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
