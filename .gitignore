@@ -60,4 +60,10 @@ typings/
 # next.js build output
 .next
 
+# dist folder made with webpack
 dist/
+
+# Archives
+*.zip
+*.7z
+*.rar

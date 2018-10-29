@@ -1,4 +1,3 @@
-//const _ = require("lodash");
 const $ = require("jquery");
 var won = false;
 var tdArray = document.getElementsByTagName("td");
@@ -7,7 +6,7 @@ window.onload = function() {
   fetch("/api/resetGame").catch(error => console.log("Error:", error));
 };
 
-$("#replay").click(function() {
+$("#replay").click(function () {
   $(".endgame").css("display", "none");
   won = false;
   fetch("/api/restartGame")
@@ -16,7 +15,7 @@ $("#replay").click(function() {
     .catch(error => console.log("Error:", error));
 });
 
-$("#reset").click(function() {
+$("#reset").click(function () {
   $(".endgame").css("display", "none");
   won = false;
   fetch("/api/resetGame")
@@ -26,16 +25,18 @@ $("#reset").click(function() {
 });
 
 for (var i = 0; i < tdArray.length; i++) {
-  (function(index) {
-    tdArray[index].addEventListener("click", function() {
+  (function (index) {
+    tdArray[index].addEventListener("click", function () {
       makeMove(index);
     });
   })(i);
+
 };
 
 function afterReset(res) {
   updateTable(res.grid)
   updatePlayer(res.player)
+
   updateScore(res.xScore, res.oScore)  
 };
 
@@ -66,25 +67,24 @@ function updateTable(grid) {
       square.innerHTML = grid[i];
     } else {
       square.innerHTML = "";
-
     }
   }
-}
+};
 
 function updatePlayer(player) {
   $("#turns").text(player + " Turn");
-}
+};
 
 function updateScore(x, o) {
   console.log(x + o);
   $("#xP").text("X points " + x);
   $("#oP").text("O points " + o);
-}
+};
 
 function makeMove(number) {
   field = number;
-  fetch("/api/move/"+ field)
+  fetch("/api/move/" + field)
     .then(res => res.json())
     .then(res => afterMove(res))
     .catch(error => console.log("Error:", error));
-}
+};
