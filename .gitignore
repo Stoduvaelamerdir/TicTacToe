@@ -63,7 +63,13 @@ typings/
 # dist folder made with webpack
 dist/
 
+# coverage - test artifacts
+coverage/ 
+
 # Archives
 *.zip
 *.7z
 *.rar
+
+# PDF 
+*.pdf
