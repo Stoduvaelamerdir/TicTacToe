@@ -70,3 +70,6 @@ coverage/
 *.zip
 *.7z
 *.rar
+
+# PDF 
+*.pdf
