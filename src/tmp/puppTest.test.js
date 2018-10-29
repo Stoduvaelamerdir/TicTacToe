@@ -18,7 +18,7 @@ describe('TicTacToe game tests', () => {
             waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
         });
         await page.click('#f0');
-        await page.waitFor(500);
+        await page.waitFor(1000);
 
         field = await page.evaluate(() => document.querySelector('#f0').innerHTML);
         expect(field).toBe('X');
