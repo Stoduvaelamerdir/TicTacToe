@@ -102,7 +102,7 @@ test("Reinitialize the game and checks for a winner which should be false. Sets 
 	expect(setField(8)).not.toBeNull();
 	changePlayer();
 	checkWinner();
-	expect(getWinner()).toBe('O');
+	expect(getWinner()).toBe('X');
 });
 test("Reinitialize the game and checks for a winner which should be false. Sets 3 fields in a row and checks winner again which returns 'X'", () => {
 	hardReset();
