@@ -1,8 +1,6 @@
 # TicTacToe
 Late-term Assignment - SC-T-303-HUGB, fall semester 2018
 
-[![CircleCI](https://circleci.com/gh/Stoduvaelamerdir/TicTacToe/tree/master.svg?style=svg)](https://circleci.com/gh/Stoduvaelamerdir/TicTacToe/tree/master)
-
 This is our remake of the classic tic-tac-toe game using Node.js. Test Driven Development was used while developing this gem of a program. This was an assignment in the Software Engineering course at Reykjavik University.
 
 Our deployed project can be found [here!](https://tictactoeprod.herokuapp.com/ "Stöðuvælamerðir's tic-tac-toe!")
